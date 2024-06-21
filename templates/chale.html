@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+	Карта {{ object.full_name }}
+{% endblock %}
+{% block content%}
+  <div class="row">
+    <div class="col-md-4 col-xl-3">
+      <div class="card w-75 mx-auto text-center border-secondary-subtle">
+        {% if chale.room_id == '875457' %}
+        <h4 class="card-header bg-success-subtle">Шале с камином.</h4>
+        	{% elif chale.room_id == '875458' %}
+        <h4 class="card-header bg-success-subtle">Шале с видом на сад.</h4>
+          {% else %}
+        <h4 class="card-header bg-success-subtle">Домик не определён</h4>
+        {% endif %} 
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ chale.full_name }}</li>
+          <li class="list-group-item">{{ chale.phone }}</li>
+          <li class="list-group-item">Заезд: {{ chale.real_arrival }}</li>
+          <li class="list-group-item">Выезд: {{ chale.real_departure }}</li>
+          <li class="list-group-item">Кол. человек - {{ chale.adults }}</li>
+          <li class="list-group-item">Email: {{ chale.email }}</li>
+          <li class="list-group-item">Источник: {{ chale.source }}</li>
+
+{#        <li class="list-group-item">Предоплата -{{ chale. }}</li>#}
+          <li class="list-group-item">Примечание - {{ chale.tag }}</li>
+        </ul>
+        <a href="{% url 'bnovo:today_list' %}" style="text-decoration: 
+          #1a1d20">
+          <h4 class="card-footer ">Вернуться к ордерам</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
