@@ -234,3 +234,4 @@ cython_debug/
 .env
 !/.idea/
 !/collected_static/
+
