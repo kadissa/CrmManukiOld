@@ -1,6 +1,6 @@
-from webhooks.models import Guest
 from django import forms
-from django.forms import CharField
+
+from webhooks.models import Guest
 
 
 class GuestEditForm(forms.ModelForm):
