@@ -3,11 +3,11 @@
   Карточки клиентов
 {% endblock %}
 {% block content %}
-  <div class="container">
+  <div class="container text-center">
     <div class="row row-cols-3">
       <div class="col text-left">
         <a href="{% url 'bnovo:preview_day' date=any_day minus=1 %}">
-          <h4 type="button" class="btn  text-light text-center
+          <h4 type="button" class="btn  text-light text-center border-3
           border-primary">
             <------
           </h4>
@@ -15,7 +15,7 @@
       </div>
       <div class="col text-left">
         <a href="{% url 'bnovo:today_list' %}">
-          <h4 type="button" class="btn  text-light text-center
+          <h4 type="button" class="btn  text-light text-center border-3
           border-primary">
             Сегодня
           </h4>
@@ -23,7 +23,8 @@
       </div>
       <div class="col text-right">
         <a href="{% url 'bnovo:any_day' date=any_day %}">
-          <h4 type="button" class="btn  text-light text-center border-primary">
+          <h4 type="button" class="btn  text-light text-center border-3
+          border-primary">
             ------>
           </h4>
         </a>
@@ -74,7 +75,7 @@
         </div>
       </div>
       {% empty %}
-      <div class="nav text-center">
+      <div class="container text-center">
         <h4 class="text-bg-info">На {{ today }} на домики ордеров нет</h4>
       </div>
     {% endfor %}
@@ -105,10 +106,8 @@
         </div>
       </div>
       {% empty %}
-      <div class="row">
-        <div class="col-auto">
+      <div class="container text-center">
           <h4 class="text-bg-info">На {{ today }} на баню ордеров нет</h4>
-        </div>
       </div>
     {% endfor %}
   </div>
