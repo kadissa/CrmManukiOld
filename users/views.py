@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, get_object_or_404, render
 
 from .forms import GuestSelfEditForm
-from ..webhooks.models import Guest, Item
+from webhooks.models import Guest, Item
 
 
 def logout_view(request):

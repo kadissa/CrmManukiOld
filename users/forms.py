@@ -2,7 +2,7 @@
 
 from django import forms
 
-from ..webhooks.models import Guest
+from webhooks.models import Guest
 
 
 class GuestSelfEditForm(forms.ModelForm):

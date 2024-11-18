@@ -9,7 +9,7 @@ from django.dispatch import receiver
 from django.views import generic
 from dotenv import load_dotenv
 
-from ..webhooks.models import Guest
+from webhooks.models import Guest
 from .models import Customer
 from .forms import GuestEditForm
 

@@ -1,4 +1,4 @@
-from ..webhooks.models import Guest
+from webhooks.models import Guest
 from django import forms
 from django.forms import CharField
 
