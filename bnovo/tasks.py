@@ -1,6 +1,6 @@
 from celery import Celery
 import requests
-from .views import get_all_booking, session
+from management.commands.bnovo_parser import get_all_booking, session
 
 app = Celery('tasks', broker='redis://localhost:6379/0')
 
@@ -10,6 +10,7 @@ def check():
     print('Reprint every 10 seconds')
     s = get_all_booking(session)
     print(s)
+
 
 app.conf.beat_schedule = {
     'run-me-every-ten-seconds': {

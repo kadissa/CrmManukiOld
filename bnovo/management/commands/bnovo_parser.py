@@ -1,10 +1,14 @@
+"""
+Получает данные клиентов с сайта по API, парсит их и записывает в базу данных.
+"""
 import datetime
 import os
 import time
 import logging
 import requests
 from django.core.management.base import BaseCommand, CommandError
-from bnovo.models import Customer
+from ....bnovo.models import Customer
+
 logging.basicConfig(level=logging.DEBUG, filename='logs/bnovo_parser.log',
                     filemode='a', format='%(asctime)s, %(levelname)s, '
                                          '%(message)s, %(name)s, %(funcName)s')
@@ -30,7 +34,7 @@ response = session.post(BASE_URL, data=HEADERS)
 
 
 def get_all_booking(one_session: session):
-    """Получение всех бронирований за период от <dfrom> до <dto>"""
+    """Получение всех бронирований за период от <d_from> до <d_to>"""
     try:
         bookings = one_session.post(
             BASE_URL + '/planning/bookings',
@@ -39,9 +43,9 @@ def get_all_booking(one_session: session):
                 'X-Requested-With': 'XMLHttpRequest'
             },
             data={
-                # "dfrom": "2022-09-10",
-                "dfrom": datetime.date.today().strftime('%Y-%m-%d'),
-                "dto": "2024-12-31",
+                # "d_from": "2022-09-10",
+                "d_from": datetime.date.today().strftime('%Y-%m-%d'),
+                "d_to": "2024-12-31",
                 "daily": 0
             }
         )
@@ -49,7 +53,7 @@ def get_all_booking(one_session: session):
         logging.debug(f'получено броней: {len(result)}шт.')
         return result
     except Exception as e:
-        logging.error('Ошибка запроса к bnovo')
+        logging.error('Ошибка запроса к bnovo', e)
 
 
 def write_to_data_base(all_booking) -> None:
@@ -71,7 +75,7 @@ def write_to_data_base(all_booking) -> None:
 
 def update_data_base(all_booking):
     try:
-        print('update_database started')
+        # print('update_database started')
         for item in all_booking:
             values_for_update = {
                 'phone': item.get('phone', '-').replace('\xa0', ''),
@@ -90,7 +94,7 @@ def update_data_base(all_booking):
             )
         logging.info('Записано в базу данных')
     except Exception as e:
-        logging.error('Не удалось записать в базу данных')
+        logging.error('Не удалось записать в базу данных', e)
 
 
 class Command(BaseCommand):
@@ -98,11 +102,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         try:
-            print('Start')
+            # print('Start')
             while True:
                 # write_to_data_base(get_all_booking(session))
                 update_data_base(get_all_booking(session))
                 time.sleep(10)
-        except:
-            logging.error('handle не отработал.')
+        except Exception as e:
+            logging.error('handle не отработал.', e)
             raise CommandError('Сбой')

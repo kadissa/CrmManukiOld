@@ -1,7 +1,5 @@
 import json
-import logging
 import threading
-import time
 from secrets import compare_digest
 
 from django.core.mail import send_mail
@@ -10,8 +8,9 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from webhooks.api_connect import *
-from webhooks.models import WebhookData, Guest
+
+from ..webhooks.api_connect import *
+from ..webhooks.models import WebhookData, Guest
 
 WEBHOOK_TOKEN = os.getenv('WEBHOOK_TOKEN_EASYWEEK')
 TITLES_CSV = [

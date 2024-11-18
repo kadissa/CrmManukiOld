@@ -1,5 +1,5 @@
 """
-Получает и отправляет данные по API.
+Get and send data by API.
 """
 import datetime
 import logging
@@ -62,7 +62,6 @@ def create_booking(one_session, booking_data=None):
     time.sleep(2)
     date_end = datetime.datetime.fromisoformat(
         booking_data.get('booking_date_end'))
-    # logging.debug(date_end.isoformat()[:-6] + 'Z')
     send_booking = one_session.post(
         BASE_URL + 'bookings', headers=HEADERS,
         data={

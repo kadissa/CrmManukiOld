@@ -27,8 +27,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['194.87.57.133', 'manuki.ddns.net', 'localhost', '127.0.0.1',
-                 'manukien.ru', '91.220.109.197', '1175077-cb90033.tw1.ru']
+ALLOWED_HOSTS = ['manuki.ddns.net', 'localhost', '127.0.0.1',
+                 'manukien.ru']
 
 # Application definition
 
@@ -149,17 +149,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1', 'https://*.localhost',
                         'http://*.127.0.0.1', 'http://*.localhost',
-                        'https://*.foodprodreact.ddns.net',
-                        'http://*.foodprodreact.ddns.net',
-                        'http://*.194.87.57.133',
-                        'https://*.194.87.57.133',
                         'http://*.manuki.ddns.net',
                         'https://*.manuki.ddns.net',
                         'https://*.manukien.ru',
                         'http://*.manukien.ru',
-                        'http://1175077-cb90033.tw1.ru',
-                        # 'https://*.manukien.ru',
-                        # 'http://*.manukien.ru',
                         ]
 
 CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"

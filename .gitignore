@@ -231,3 +231,6 @@ cython_debug/
 .idea
 /booking_data.csv
 !/.env
+.env
+!/.idea/
+!/collected_static/

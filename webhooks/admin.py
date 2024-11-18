@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
-from webhooks.models import Guest, Item
+from ..webhooks.models import Guest, Item
 
 
 @admin.register(Guest)
@@ -16,11 +16,6 @@ class CustomerAdmin(ModelAdmin):
 
     ordering = ('-booking_id',)
     list_display_links = ('ful_name',)
-    # view_on_site = False
-    #
-    # def view_on_site(self, obj):
-    #     url = reverse("person-detail", kwargs={"slug": obj.slug})
-    #     return "https://example.com" + url
     list_display = (
         'price',
         'price_formatted',
@@ -78,6 +73,7 @@ class CustomerAdmin(ModelAdmin):
     search_fields = ('email', 'ful_name',)
     list_filter = ('phone',)
     empty_value_display = '-пусто-'
+
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):

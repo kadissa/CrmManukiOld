@@ -1,14 +1,12 @@
-import time
-
-from django.contrib.auth import logout
-from django.shortcuts import redirect, get_object_or_404, render
-from django.views.generic import UpdateView
-from .forms import GuestSelfEditForm
-from webhooks.models import Guest, Item
-from django.core.mail import send_mail
+import os
 import threading
 
-import os
+from django.contrib.auth import logout
+from django.core.mail import send_mail
+from django.shortcuts import redirect, get_object_or_404, render
+
+from .forms import GuestSelfEditForm
+from ..webhooks.models import Guest, Item
 
 
 def logout_view(request):
@@ -17,7 +15,6 @@ def logout_view(request):
 
 
 def guest_self_edit(request, booking_id, sauna_price):
-    # time.sleep(2)
     if not Guest.objects.filter(
             booking_id=booking_id, price=sauna_price).order_by('id').last():
         return redirect('https://manuki.easyweek.ru')
@@ -65,21 +62,6 @@ def guest_self_edit(request, booking_id, sauna_price):
     return render(request, 'guest_self_edit.html',
                   context={'object': guest, 'form': form})
 
-
-# def mail(guest, items):
-#     maile = send_mail(
-#         subject='Внимание!',
-#         message=f'Гость {guest.ful_name}, телефон:{guest.phone}, '
-#                 f'заказал доп. услуги  на  сумму {items.total_accessories_price}. '
-#                 f'Общая сумма {items.total_price}'
-#                 f' Начало:  {guest.start}, конец: {guest.end}',
-#         from_email=os.getenv('EMAIL_HOST_USER'),
-#         recipient_list=['kadissa70@gmail.com',
-#                         'Al.malafeev2015@yandex.ru',
-#                         'manuki.en178@gmail.com'
-#                         ]
-#     )
-#     return maile
 
 def extend_services_mail(guest, items):
     rotenburo_count = guest.rotenburo_1 or 0

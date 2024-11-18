@@ -2,7 +2,6 @@ from django.db import models
 from django.urls import reverse
 
 
-# Create your models here.
 class WebhookData(models.Model):
     received_at = models.DateTimeField(help_text="Время получения веб-хука.")
     payload = models.JSONField(default=None, null=True)

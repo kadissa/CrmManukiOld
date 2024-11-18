@@ -9,7 +9,7 @@ from django.dispatch import receiver
 from django.views import generic
 from dotenv import load_dotenv
 
-from webhooks.models import Guest
+from ..webhooks.models import Guest
 from .models import Customer
 from .forms import GuestEditForm
 
@@ -102,6 +102,6 @@ def check_about_black_list(sender, **kwargs):
                             f'забронировал домик на '
                             f'{last_object.real_arrival}',
                     from_email=os.getenv('EMAIL_HOST_USER'),
-                    recipient_list=['kadissa70@gmail.com',
-                                    'Al.malafeev2015@yandex.ru']
+                    recipient_list=[os.getenv('ALEX_EMAIL'),
+                                    os.getenv('SASHA_EMAIL')]
                 )
