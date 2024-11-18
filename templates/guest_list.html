@@ -34,7 +34,7 @@
       <div class="row">
         <div class="col text-center">
           <h4 class="text-light text-center border-primary tex">
-            {{ today }}
+            {{ today }} 
           </h4>
         </div>
       </div>
@@ -75,8 +75,8 @@
         </div>
       </div>
       {% empty %}
-      <div class="container text-center">
-        <h4 class="text-bg-info">На {{ today }} на домики ордеров нет</h4>
+      <div class="container text-center col-md-auto">
+        <h4 class="text-bg-info rounded">На {{ today }} на домики ордеров нет</h4>
       </div>
     {% endfor %}
   </div>
@@ -106,14 +106,14 @@
         </div>
       </div>
       {% empty %}
-      <div class="container text-center">
-          <h4 class="text-bg-info">На {{ today }} на баню ордеров нет</h4>
+      <div class="container text-center col-md-auto">
+          <h4 class="text-bg-info rounded">На {{ today }} на баню ордеров нет</h4>
       </div>
     {% endfor %}
   </div>
   {% if user.is_admin or user.is_superuser or user.is_staff %}
     <div class="container">
-      <div class="col-md-1  bg-primary-subtle">
+      <div class="col-md-1  bg-primary-subtle rounded">
         <a href="/admin">
           <button type="submit" class="btn btn-outline-info w-100">
             admin
